@@ -1,0 +1,62 @@
+from collections import Counter
+import pandas as pd
+f = open("Latin-bible_low.txt", "r")     
+data = f.read()
+
+# THIS WILL NEED MODIFICATION IF YOU USE IT, commenting out sections that are not appliciable to your project - IE case/numbers/special characters
+
+#df.columns = df.columns.str.replace('[#,@,&]', '')
+
+#removes all punctuation
+'''
+import re
+string = open('A.txt').read()
+new_str = re.sub('[^a-zA-Z0-9\n\.]', ' ', string)
+open('b.txt', 'w').write(new_str)
+
+file1 = open('B.txt', 'r')
+file2 = open('C.txt', 'w')
+file1_cont = file1.readlines()
+for line in file1_cont:
+    line.replace('.', ' ')
+    file2.write(line)'''
+
+
+#remove all numbers
+'''with open('d.txt') as f:
+    data = ''.join(i for i in f.read() if not i.isdigit())
+
+with open('d.txt', 'w') as f:
+    f.write(data)'''
+
+
+
+# all lower case
+'''
+with open('Bible-KJV-nopunc.txt', 'r') as inp:
+    y = inp.read().lower()
+with open('C.txt', 'a') as out:
+    out.write(y)  '''
+
+
+words = data.split()   
+counting = Counter(words)
+list_of_word_and_frequency = counting.most_common()
+print("Most Commonly used word in Text File is => ", counting.most_common()[66][0])
+print("Frequency of most commonly used word in Text File is => ", counting.most_common()[0][1])
+
+list_of_word_and_frequency
+
+
+po = list_of_word_and_frequency
+
+
+
+df = pd.DataFrame(po)
+df
+
+
+
+# Generate dataframe from list and write to xlsx.
+#pd.DataFrame(po).to_excel('output.xlsx', header=['A','B'], index=False)
+df.to_excel('output.xlsx', header=['A','B'], index=False)
